@@ -1,0 +1,13 @@
+Package: dairy
+Title: Let R Remember the Milk
+Version: 0.0.0.9000
+Authors@R: person("Stefan Milton", "Bache", email = "stefan@stefanbache.dk", role = c("aut", "cre"))
+Description: R wrapper for Remember the Milk service.
+Depends:
+    R (>= 3.2.3)
+License: MIT + file LICENSE
+Imports:
+    digest,
+    httr,
+    jsonlite
+RoxygenNote: 5.0.1
