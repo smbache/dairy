@@ -49,6 +49,7 @@ parameter_signature <- function(params)
 #'
 #' @param method The name of the API method to call.
 #' @param ... name-value parameter pairs.
+#' @param .auth logical indicating whether authentication is required.
 #'
 #' @importFrom httr POST content
 #' @importFrom jsonlite fromJSON

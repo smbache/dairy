@@ -1,5 +1,7 @@
 #' Add a Task
 #'
+#' @param name The task name.
+#' @param timeline A timeline (see \code{get_timeline}).
 #' @param list_id An id of a list to which the task is added.
 #' @param parse If \code{parse = TRUE} Smart Add will be used to process the task.
 #' @param parent (Pro feature): when a parent task id is provided, the task is

@@ -10,6 +10,8 @@ quairy(method, ..., .auth = TRUE)
 \item{method}{The name of the API method to call.}
 
 \item{...}{name-value parameter pairs.}
+
+\item{.auth}{logical indicating whether authentication is required.}
 }
 \description{
 This is a low-level interface to the methods in the API found

@@ -8,6 +8,10 @@ add_task(name, timeline = get_timeline(), list_id = NULL, parse = FALSE,
   parent = NULL)
 }
 \arguments{
+\item{name}{The task name.}
+
+\item{timeline}{A timeline (see \code{get_timeline}).}
+
 \item{list_id}{An id of a list to which the task is added.}
 
 \item{parse}{If \code{parse = TRUE} Smart Add will be used to process the task.}
