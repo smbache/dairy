@@ -23,3 +23,5 @@ timeline <- get_timeline()
 new_task <- quairy("rtm.tasks.add",
                     name = "Use dairy package", timeline = timeline)
 ```
+
+NB: `quairy` is a deliberate typo, a mix between "query" and "dairy".
