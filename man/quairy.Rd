@@ -17,4 +17,13 @@ quairy(method, ..., .auth = TRUE)
 This is a low-level interface to the methods in the API found
 here: \url{https://www.rememberthemilk.com/services/api/}.
 }
+\examples{
+\dontrun{
+task_list <- quairy("rtm.tasks.getList")
+
+timeline <- get_timeline()
+new_task <- quairy("rtm.tasks.add",
+                    name = "Use dairy package", timeline = timeline)
+}
+}
 

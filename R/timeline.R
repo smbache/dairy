@@ -5,7 +5,7 @@
 #'
 #' @param new logical indicating whether a new timeline should be created.
 #'
-#' @noRd
+#' @export
 get_timeline <- local({
 
   .timeline <- NULL

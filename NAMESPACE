@@ -3,6 +3,7 @@
 export(add_task)
 export(authenticate_dairy)
 export(check_token)
+export(get_timeline)
 export(quairy)
 importFrom(digest,digest)
 importFrom(httr,GET)

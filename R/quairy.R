@@ -55,6 +55,14 @@ parameter_signature <- function(params)
 #' @importFrom jsonlite fromJSON
 #'
 #' @export
+#' @examples
+#' \dontrun{
+#' task_list <- quairy("rtm.tasks.getList")
+#'
+#' timeline <- get_timeline()
+#' new_task <- quairy("rtm.tasks.add",
+#'                     name = "Use dairy package", timeline = timeline)
+#' }
 quairy <- function(method, ..., .auth = TRUE)
 {
   if (!is.character(method) && length(method) == 1L)
