@@ -32,6 +32,19 @@ auth_token <- local({
   }
 })
 
+
+#' Print Authentication Instructions
+#' @noRd
+auth_instructions <- function()
+{
+  cat("Opening browser for application authentication.\n")
+  cat("If browser did not open correctly, browse manually to this URL:\n")
+  cat(url, "\n")
+  cat("Press enter when application when you have authenticated.  ")
+  readLines(n = 1)
+}
+
+
 #' Authenticate Application with Remember the Milk
 #'
 #' This function will authenticate the package with your online account.
@@ -41,29 +54,17 @@ auth_token <- local({
 #' @export
 authenticate_dairy <- function()
 {
-  url_template <-
-    paste0("https://www.rememberthemilk.com/services/auth/",
-           "?api_key=%s",
-           "&perms=delete",
-           "&frob=%s",
-           "&format=json",
-           "&api_sig=%s")
+  auth_url <- "https://www.rememberthemilk.com/services/auth/?"
 
-  api_key <- getOption("dairy_apikey")
+
   frob <- get_frob()
+  params_string <- auth_params(frob = frob)
 
-  api_sig <-
-    params_md5(api_key = api_key, frob = frob, perms = "delete")
-
-  url <- sprintf(url_template, api_key, frob, api_sig)
+  url <- sprintf(auth_url, params_string)
 
   browseURL(url)
 
-  cat("Opening browser for application authentication.\n")
-  cat("If browser did not open correctly, browse manually to this URL:\n")
-  cat(url, "\n")
-  cat("Press enter when application when you have authenticated.\n")
-  readLines(n = 1)
+  auth_instructions()
 
   token <- get_token(frob)
   auth_file <- system.file("auth/TOKEN", package = .packageName, mustWork = TRUE)

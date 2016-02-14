@@ -4,7 +4,7 @@
 \alias{quairy}
 \title{Low-Leveld Query Function for dairy}
 \usage{
-quairy(method, ..., .auth = TRUE)
+quairy(method, ..., .auth = TRUE, .json = FALSE)
 }
 \arguments{
 \item{method}{The name of the API method to call.}
@@ -12,6 +12,9 @@ quairy(method, ..., .auth = TRUE)
 \item{...}{name-value parameter pairs.}
 
 \item{.auth}{logical indicating whether authentication is required.}
+
+\item{.json}{logical indicating whether pure json result should be returned
+instead of an R list (with class \code{quairy_result}).}
 }
 \description{
 This is a low-level interface to the methods in the API found
@@ -19,10 +22,10 @@ here: \url{https://www.rememberthemilk.com/services/api/}.
 }
 \examples{
 \dontrun{
-task_list <- quairy("rtm.tasks.getList")
+task_list <- quairy("tasks.getList")
 
 timeline <- get_timeline()
-new_task <- quairy("rtm.tasks.add",
+new_task <- quairy("tasks.add",
                     name = "Use dairy package", timeline = timeline)
 }
 }

@@ -15,7 +15,12 @@ get_timeline <- local({
     if (!new && !is.null(.timeline))
       return(.timeline)
 
-    .timeline <<- quairy("rtm.timelines.create")[["timeline"]]
+    .timeline <<- quairy("rtm.timelines.create")[["rsp"]][["timeline"]]
+
+    if (!quairy_status(.timeline)) {
+      .timeline <<- NULL
+      stop("Failed to obtain a timeline.", call. = FALSE)
+    }
 
     .timeline
   }
