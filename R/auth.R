@@ -34,8 +34,9 @@ auth_token <- local({
 
 
 #' Print Authentication Instructions
+#' @param url The url to navigate to.
 #' @noRd
-auth_instructions <- function()
+auth_instructions <- function(url)
 {
   cat("Opening browser for application authentication.\n")
   cat("If browser did not open correctly, browse manually to this URL:\n")
@@ -60,14 +61,17 @@ authenticate_dairy <- function()
   frob <- get_frob()
   params_string <- auth_params(frob = frob)
 
-  url <- sprintf(auth_url, params_string)
+  url <- paste0(auth_url, params_string)
 
   browseURL(url)
 
-  auth_instructions()
+  auth_instructions(url)
 
   token <- get_token(frob)
   auth_file <- system.file("auth/TOKEN", package = .packageName, mustWork = TRUE)
+
+  if (is.null(token))
+    stop("Failed to authenticate dairy.", call. = FALSE)
 
   # Possibly check token validity here as well.
   writeLines(token, auth_file)

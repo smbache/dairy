@@ -6,8 +6,11 @@
 #' @noRd
 get_token <- function(frob)
 {
-  method  <- "rtm.auth.getToken"
-  quairy("rtm.auth.getToken", frob = frob, .auth = FALSE)[["auth"]][["token"]]
+  result  <- quairy("auth.getToken", frob = frob, .auth = FALSE)
+  if (!quairy_status(result))
+    stop("Failed to obtain token.", call. = FALSE)
+
+  result[["rsp"]][["auth"]][["token"]]
 }
 
 #' Check Authentication Token.
@@ -17,6 +20,9 @@ get_token <- function(frob)
 #' @export
 check_token <- function()
 {
-  result <- quairy("rtm.auth.checkToken")
+  result <- quairy("auth.checkToken")
+  if (!quairy_status(result))
+    stop("Failed to check token.", call. = FALSE)
+
   identical(result[["rsp"]][["stat"]], "ok")
 }

@@ -3,7 +3,7 @@
 #' @param list A list object.
 #'
 #' @noRd
-list_structure <- function(list, depth = 0)
+list_structure <- function(list, depth = 1)
 {
   if (!is.list(list) || is.null(names(list)))
     return(invisible())
@@ -15,7 +15,7 @@ list_structure <- function(list, depth = 0)
       cat("\n")
       list_structure(list[[i]], depth = depth + 1)
     } else {
-      cat(paste0("(", paste(class(list[[i]]), collapse = ","), ")"),
+      cat(paste0(" (", paste(class(list[[i]]), collapse = ","), ")"),
           "=", as.character(list[[i]]), "\n")
     }
   }
@@ -33,7 +33,9 @@ print.quairy_result <- function(x, ...) {
   if (!inherits(x, "quairy_result"))
     stop("Expect a 'quairy_result' for printing.")
 
-  cat("Quairy result (status ", x[["rsp"]][["stat"]], ")\n", sep = "")
+  cat("Quairy result (status ", x[["rsp"]][["stat"]], ")\n\n", sep = "")
+  cat("rsp\n")
+
   list_structure(x[["rsp"]][-1L])
 
   invisible(x)

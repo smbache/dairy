@@ -6,5 +6,10 @@
 #' @noRd
 get_frob <- function()
 {
-  quairy("rtm.auth.getFrob", .auth = FALSE)[["frob"]]
+  result <- quairy("rtm.auth.getFrob", .auth = FALSE)
+
+  if (!quairy_status(result))
+    stop("Unable to obtain frob.", call. = FALSE)
+
+  result[["rsp"]][["frob"]]
 }

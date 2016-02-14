@@ -7,14 +7,14 @@ auth_params <- function(frob)
   api_key <- getOption("dairy_apikey")
   shared_secret <- getOption("dairy_secret")
 
-  params   <- c(api_key = api_key, format = "json", frob = frob)
+  params   <- c(api_key = api_key, frob = frob, perms = "delete")
 
   params_string <-
     paste(paste0(names(params), params), collapse = "")
 
   signature <- paste0(shared_secret, params_string)
 
-  sprintf("api_key=%s&perms=delete&frob=%s&format=json&api_sig=%s",
+  sprintf("api_key=%s&perms=delete&frob=%s&api_sig=%s",
           api_key,
           frob,
           md5(signature))
